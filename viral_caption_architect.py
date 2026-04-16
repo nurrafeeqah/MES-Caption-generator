@@ -7,14 +7,15 @@ Original file is located at
     https://colab.research.google.com/drive/1KPkUT3Z6NbVBMFeHfMMlBM_t2jwRfF6I
 """
 
-from google.colab import userdata
+
 import streamlit as st
 
-# 1. Get the key from your Colab Secrets (the Key icon on the left)
-try:
-    MY_GEMINI_KEY = userdata.get('GEMINI_KEY')
-except:
-    st.error("Make sure you added 'GEMINI_KEY' to the Colab Secrets (Key icon) and enabled access!")
+if "GEMINI_KEY" in st.secrets:
+    genai.configure(api_key=st.secrets["GEMINI_KEY"])
+else:
+    st.error("Please add your GEMINI_KEY to the Streamlit Secrets dashboard.")
+
+model = genai.GenerativeModel('gemini-3-flash-preview')
 
 # 1. Update the app file
 with open('app.py', 'w') as f:
