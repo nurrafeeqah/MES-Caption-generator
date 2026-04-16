@@ -75,8 +75,11 @@ if st.button("Generate Content"):
 print("Success: app.py updated and fixed!")
 
 import sys
-!{sys.executable} -m pip install -r requirements.txt
-!{sys.executable} -m pip install pyngrok
+import streamlit as st
+import requests
+from bs4 import BeautifulSoup
+import google.generativeai as genai
+e
 
 from pyngrok import ngrok
 import subprocess
